@@ -119,6 +119,16 @@ class B extends A { /* In all instances of this class, there will be a space for
 class C {
     public A i; /* i represents 'instance' */
     public C() { System.out.println(i.b); /* OK! */ }
+
+    public void f(A a) {
+        if (a instanceof A) {
+            // ...
+        } else if (a instanceof B) {
+            // ...
+        }
+    }
+
+    public void f(B b) {} /* Still OK! If we call f using a B object, the compiler will use this method first! */
 }
 
 abstract class D { /* D can't be instantiated directly, any instantiation must through the inheritance! */
