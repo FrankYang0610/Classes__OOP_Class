@@ -68,6 +68,8 @@ class A {
     public final void j(double x) {} /* OK! final methods can be overloaded. */
 
     public void j(boolean x) {} /* OK! Another overloading */
+
+    private void k() {}
 }
 
 class B extends A { /* In all instances of this class, there will be a space for fields from A, including private int c. */
@@ -108,11 +110,14 @@ class B extends A { /* In all instances of this class, there will be a space for
     // @Override
     // public final void j() {} /* WRONG, cannot override a final method from a superclass */
 
-    // public final void j() {} /* WRONG, even if no @Override is added, it is actually [overriding] */
+    // public final void j() {} /* ERROR, but should be ok. */
 
-    // private final void j() {} /* WRONG, even if no @Override is added, it is actually [overriding] */
+    // private final void j() {} /* ERROR, but should be ok. */
 
     public final void j(int x) { super.j(); } /* OK! */
+
+    // @Override /* WRONG! */
+    private final void k() {} /* OK! */
 }
 
 /* Another class in the same package */
