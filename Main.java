@@ -1,14 +1,33 @@
 interface I {
+    /*
+     * All fields in the interface are public [static] final!
+     * All methods in the interface are public abstract!
+     */
+
+    // private int a; /* WRONG! No private, and the field must be initialized! */
+
+    int a = 0; /* OK */
+
     public void f(); /* OK! */
 
     // public void f(int x) {} /* WRONG! No implementation in an interface! */
 
     public void g();
+
+    default public void g(int x) {
+        System.out.println(x);
+    }
+
+    // private void h(); /* WRONG! */
 }
 
 abstract interface J {} /* OK, but 'abstract' can be deleted */
 
-interface K extends I {} /* OK! */
+interface K extends I, J { /* OK! */
+    interface T {} /* OK! */
+    interface U extends K {} /* OK! */
+    class V {} /* OK */
+}
 
 // interface L implements I {} /* WRONG! */
 
