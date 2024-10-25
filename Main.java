@@ -1,4 +1,4 @@
-interface I {
+interface I { /* Also view polymorphism */
     /*
      * All fields in the interface are public [static] final!
      * All methods in the interface are public abstract!
